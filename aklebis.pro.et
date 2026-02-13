@@ -1,0 +1,339 @@
+ 
+w3resource
+home
+Front End
+HTML
+CSS
+JavaScript
+HTML5
+Schema.org
+php.js
+Twitter Bootstrap
+Responsive Web Design tutorial
+Zurb Foundation 3 tutorials
+Pure CSS
+HTML5 Canvas
+JavaScript Course
+Icon
+Angular
+Vue
+Jest
+Mocha
+NPM
+Yarn
+Back End
+PHP
+Python
+Java
+Node.js
+Ruby
+C programming
+PHP Composer
+Laravel
+PHPUnit
+Database
+SQL(2003 standard of ANSI)
+MySQL
+PostgreSQL
+SQLite
+NoSQL
+MongoDB
+Oracle
+Redis
+Apollo GraphQL
+API
+Google Plus API
+Youtube API
+Google Maps API
+Flickr API
+Last.fm API
+Twitter REST API
+Data Interchnage
+XML
+JSON
+Ajax
+Exercises
+HTML CSS Exercises
+JavaScript Exercises
+jQuery Exercises
+jQuery-UI Exercises
+CoffeeScript Exercises
+PHP Exercises
+Python Exercises
+C Programming Exercises
+C# Sharp Exercises
+Java Exercises
+SQL Exercises
+Oracle Exercises
+MySQL Exercises
+SQLite Exercises
+PostgreSQL Exercises
+MongoDB Exercises
+Twitter Bootstrap Examples
+Others
+Excel Tutorials
+Useful tools
+Google Docs Forms Templates
+Google Docs Slide Presentations
+Number Conversions
+Linux Tutorials
+Quizzes
+Articles
+JavaScript Form Validation using a Sample Registration Form
+Last update on August 19 2022 21:50:37 (UTC/GMT +8 hours)
+
+Form Validation
+In this document, we have discussed JavaScript Form Validation using a sample registration form. The tutorial explores JavaScript validation on submit with detail explanation.
+
+Following pictorial shows in which field, what validation we want to impose.
+
+JavaScript Form Validation using sample registration form
+How would we set those validations
+
+We will create JavaScript functions (one for each input field whose value is to validate) which check whether a value submitted by user passes the validation.
+
+All those functions are called from another function.
+
+It sets the focus to the input field until the user supplies a valid value.
+
+When the user does so, they may proceed and can supply value to the next available field.
+
+The later JavaScript function created is called on the onsubmit event of the form.
+
+HTML Code of the Sample Registration Form
+
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>JavaScript Form Validation using a sample registration form</title>
+<meta name="keywords" content="example, JavaScript Form Validation, Sample registration form" />
+<meta name="description" content="This document is an example of JavaScript Form Validation using a sample registration form. " />
+<link rel='stylesheet' href='js-form-validation.css' type='text/css' />
+<script src="sample-registration-form-validation.js"></script>
+</head>
+<body onload="document.registration.userid.focus();">
+<h1>Registration Form</h1>
+Use tab keys to move from one input field to the next.
+<form name='registration' onSubmit="return formValidation();">
+<ul>
+<li><label for="userid">User id:</label></li>
+<li><input type="text" name="userid" size="12" /></li>
+<li><label for="passid">Password:</label></li>
+<li><input type="password" name="passid" size="12" /></li>
+<li><label for="username">Name:</label></li>
+<li><input type="text" name="username" size="50" /></li>
+<li><label for="address">Address:</label></li>
+<li><input type="text" name="address" size="50" /></li>
+<li><label for="country">Country:</label></li>
+<li><select name="country">
+<option selected="" value="Default">(Please select a country)</option>
+<option value="AF">Australia</option>
+<option value="AL">Canada</option>
+<option value="DZ">India</option>
+<option value="AS">Russia</option>
+<option value="AD">USA</option>
+</select></li>
+<li><label for="zip">ZIP Code:</label></li>
+<li><input type="text" name="zip" /></li>
+<li><label for="email">Email:</label></li>
+<li><input type="text" name="email" size="50" /></li>
+<li><label id="gender">Sex:</label></li>
+<li><input type="radio" name="msex" value="Male" /><span>Male</span></li>
+<li><input type="radio" name="fsex" value="Female" /><span>Female</span></li>
+<li><label>Language:</label></li>
+<li><input type="checkbox" name="en" value="en" checked /><span>English</span></li>
+<li><input type="checkbox" name="nonen" value="noen" /><span>Non English</span></li>
+<li><label for="desc">About:</label></li>
+<li><textarea name="desc" id="desc"></textarea></li>
+<li><input type="submit" name="submit" value="Submit" /></li>
+</ul>
+</form>
+</body>
+</html>
+
+sample-registration-form-validation.js is the external JavaScript file which contains the JavaScript ocde used to validate the form. js-form-validation.css is the stylesheet containing styles for the form. Notice that for validation, the JavaScript function containing the code to validate is called on the onSubmit event of the form.
+
+For the sake of demonstration, we have taken five countries only. You may add any number of countries in the list.
+
+CSS Code of the Sample Registration Form
+
+h1 {
+margin-left: 70px;
+}
+form li {
+list-style: none;
+margin-bottom: 5px;
+}
+
+form ul li label{
+float: left;
+clear: left;
+width: 100px;
+text-align: right;
+margin-right: 10px;
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:14px;
+}
+
+form ul li input, select, span {
+float: left;
+margin-bottom: 10px;
+}
+
+form textarea {
+float: left;
+width: 350px;
+height: 150px;
+}
+
+[type="submit"] {
+clear: left;
+margin: 20px 0 0 230px;
+font-size:18px
+}
+
+p {
+margin-left: 70px;
+font-weight: bold;
+}
+
+JavaScript code for validation
+
+JavaScript function which is called on onSubmit
+
+This function calls all other functions used for validation.
+
+function formValidation()
+{
+var uid = document.registration.userid;
+var passid = document.registration.passid;
+var uname = document.registration.username;
+var uadd = document.registration.address;
+var ucountry = document.registration.country;
+var uzip = document.registration.zip;
+var uemail = document.registration.email;
+var umsex = document.registration.msex;
+var ufsex = document.registration.fsex; if(userid_validation(uid,5,12))
+{
+if(passid_validation(passid,7,12))
+{
+if(allLetter(uname))
+{
+if(alphanumeric(uadd))
+{ 
+if(countryselect(ucountry))
+{
+if(allnumeric(uzip))
+{
+if(ValidateEmail(uemail))
+{
+if(validsex(umsex,ufsex))
+{
+}
+} 
+}
+} 
+}
+}
+}
+}
+return false;
+}
+
+JavaScript function for validating userid
+
+function userid_validation(uid,mx,my)
+{
+var uid_len = uid.value.length;
+if (uid_len == 0 || uid_len >= my || uid_len < mx)
+{
+alert("User Id should not be empty / length be between "+mx+" to "+my);
+uid.focus();
+return false;
+}
+return true;
+}
+
+The code above checks whether userid input field is provided with a string of length 5 to 12 characters. If not, it displays an alert.
+
+Flowchart:
+
+Flowchart : JavaSript userid validation
+avaScript function for validating password
+
+function passid_validation(passid,mx,my)
+{
+var passid_len = passid.value.length;
+if (passid_len == 0 ||passid_len >= my || passid_len < mx)
+{
+alert("Password should not be empty / length be between "+mx+" to "+my);
+passid.focus();
+return false;
+}
+return true;
+}
+
+The above code used to validate password (it should be of length 7 to 12 characters). If not, it displays an alert.
+
+Flowchart:
+
+Flowchart : JavaSript password validation
+JavaScript code for validating user name
+
+function allLetter(uname)
+{ 
+var letters = /^[A-Za-z]+$/;
+if(uname.value.match(letters))
+{
+return true;
+}
+else
+{
+alert('Username must have alphabet characters only');
+uname.focus();
+return false;
+}
+}
+
+The code above checks whether user name input field is provided with alphabates characters. If not, it displays an alert.
+
+Flowchart:
+
+Flowchart : JavaSript user name validation
+JavaScript code for validating user address
+
+function alphanumeric(uadd)
+{ 
+var letters = /^[0-9a-zA-Z]+$/;
+if(uadd.value.match(letters))
+{
+return true;
+}
+else
+{
+alert('User address must have alphanumeric characters only');
+uadd.focus();
+return false;
+}
+}
+
+The code above checks whether user address input field is provided with alphanumeric characters. If not, it displays an alert.
+
+Flowchart:
+
+Flowchart : JavaSript user address validation
+JavaScript code for validating country
+
+function countryselect(ucountry)
+{
+if(ucountry.value == "Default")
+{
+alert('Select your country from the list');
+ucountry.focus();
+return false;
+}
+else
+{
+return true;
+}
+}
