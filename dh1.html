@@ -1,0 +1,309 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Employee Database Management System</title>
+</head>
+    window.location.herf.open.{
+    put
+    ("aklibis.pro.et && this. index. html ")<a href="dh.html"=aklebis.pro.et method="post">aklebis.pro.et</a></a>
+    
+<body>
+    <div id="app">
+        <header class="header">
+            <h1>Employee Database Management</h1>
+            <button class="createEmployee">
+                Add Employee
+            </button>
+                <!DOCTYPEhtml>
+    <head>
+
+<script>
+    
+ Employee Database Management System (Frontend only)
+// Note: Adding/Deleting employees here updates data only in memory.
+// Changes are NOT saved permanently to data.json or any backend.
+
+(async function () {
+    // Fetch initial employee data from data.json (static file)
+    const data = await fetch("data.json");
+    const res = await data.json();
+    let employees = res;
+
+    // Keep track of selected employee
+    let selectedEmployeeId = employees[0].id;
+    let selectedEmployee = employees[0];
+
+    // DOM elements for employee list and employee details
+    const employeeList = document.querySelector(".employees__names--list");
+    const employeeInfo = document.querySelector(".employees__single--info");
+
+    // ---------------- Add Employee Logic ----------------
+    const createEmployee = document.querySelector(".createEmployee");
+    const addEmployeeModal = document.querySelector(".addEmployee");
+    const addEmployeeForm = document.querySelector(".addEmployee_create");
+
+    // Show add employee modal
+    createEmployee.addEventListener("click", () => {
+        addEmployeeModal.style.display = "flex";
+    });
+
+    // Close modal when clicking outside form
+    addEmployeeModal.addEventListener("click", (e) => {
+        if (e.target.className === "addEmployee") {
+            addEmployeeModal.style.display = "none";
+        }
+    });
+
+    // Restrict DOB input → Minimum 18 years old
+    const dobInput = document.querySelector(".addEmployee_create--dob");
+    dobInput.max = `${new Date().getFullYear() - 18}-${new Date().toISOString().slice(5, 10)}`;
+
+    // Handle add employee form submit
+    addEmployeeForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Collect form data
+        const formData = new FormData(addEmployeeForm);
+        const values = [...formData.entries()];
+        let empData = {};
+        values.forEach((val) => {
+            empData[val[0]] = val[1];
+        });
+
+        // Generate new employee data
+        empData.id = employees[employees.length - 1].id + 1;
+        empData.age = new Date().getFullYear() - parseInt(empData.dob.slice(0, 4), 10);
+        empData.imageUrl = empData.imageUrl || "gfg.png";
+
+        // Push into local employees array (NOT saved to file)
+        employees.push(empData);
+
+        // Re-render employee list
+        renderEmployees();
+
+        // Reset form + close modal
+        addEmployeeForm.reset();
+        addEmployeeModal.style.display = "none";
+    });
+    // ----------------------------------------------------
+
+    // ---------------- Select & Delete Employee Logic ----------------
+    employeeList.addEventListener("click", (e) => {
+        // Select employee
+        if (e.target.tagName === "SPAN" && selectedEmployeeId !== e.target.id) {
+            selectedEmployeeId = e.target.id;
+            renderEmployees();
+            renderSingleEmployee();
+        }
+
+        // Delete employee
+        if (e.target.tagName === "I") {
+            employees = employees.filter((emp) => String(emp.id) !== e.target.parentNode.id);
+
+            // If deleted employee was selected, update selection
+            if (String(selectedEmployeeId) === e.target.parentNode.id) {
+                selectedEmployeeId = employees[0]?.id || -1;
+                selectedEmployee = employees[0] || {};
+                renderSingleEmployee();
+            }
+
+            renderEmployees();
+        }
+    });
+    // ----------------------------------------------------------------
+
+    // ---------------- Render All Employees ----------------
+    const renderEmployees = () => {
+        employeeList.innerHTML = "";
+        employees.forEach((emp) => {
+            const employee = document.createElement("span");
+            employee.classList.add("employees__names--item");
+
+            // Highlight selected employee
+            if (parseInt(selectedEmployeeId, 10) === emp.id) {
+                employee.classList.add("selected");
+                selectedEmployee = emp;
+            }
+
+            // Render employee name with delete button
+            employee.setAttribute("id", emp.id);
+            employee.innerHTML = `${emp.firstName} ${emp.lastName} 
+                <i class="employeeDelete">&#10060;</i>`;
+            employeeList.append(employee);
+        });
+    };
+    // ------------------------------------------------------
+
+    // ---------------- Render Single Employee ----------------
+    const renderSingleEmployee = () => {
+        // No employee selected
+        if (selectedEmployeeId === -1) {
+            employeeInfo.innerHTML = "";
+            return;
+        }
+
+        // Render selected employee details
+        employeeInfo.innerHTML = `
+        <img src="${selectedEmployee.imageUrl}" />
+        <span class="employees__single--heading">
+        ${selectedEmployee.firstName} ${selectedEmpployee.Name} 
+            (${selectedEmployee.age})0
+        </span>
+        <span>${selectedEmployee.address}</span>
+        <span>${selectedEmployee.email}</span>
+        <span>Mobile - ${selectedEmployee.contactNumber}</span>
+        <span>DOB - ${selectedEmployee.dob}</span>
+            <span>id NO -${selectedEmpoyee. idNO</span>
+    <span>${selectedEmployee.gender</span>
+        `;
+      
+    };
+    // --------------------------------------------------------
+function form validation()
+document.getelemntByid(
+JavaScript program for validating name, email, and mobile number in a registration form
+
+``
+<title>Registration Form</title>
+<script>
+function validateForm() {
+var name = document.getElementById("name").value;
+var email = document.getElementById("email").value;
+var mobile = document.getElementById("mobile").value;
+// Name validation
+if (name == "") {
+alert("Please enter your name.");
+return false;
+}
+// Email validation
+var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailPattern.test(email)) {
+alert("Please enter a valid email address.");
+return false;
+}
+// Mobile number validation
+var mobilePattern = /^\d{10}$/;
+if (!mobilePattern.test(mobile)) {
+alert("Please enter a valid 10-digit mobile number.");
+return false;
+}
+// If all validations pass, form submission is allowed
+
+Get Concept IT Solutions, Pune’s stories in your inbox
+
+Join Medium for free to get updates from this writer.
+
+Subscribe
+
+return true;
+}
+</script>
+</head>
+<body>
+<h2>Registration Form</h2>
+<form action  =  "add create employee"    onsubmit="return validateForm()">
+<label for="name">Name:</label>
+<input type="text" id="name" name="name" required><br><br>
+<label for="email">Email:</label>
+<input type="email" id="email" name="email" required><br><br>
+<label for="mobile">Mobile:</label>
+<input type="text" id="mobile" name="mobile" required><br><br>
+<input type="submit" name= add create employee value="Submit">
+</form>
+</body>
+</html>
+
+ function link(ulr)  {
+const function() = link (aklebis.pro.et=.index.html),
+const function().qauryselecter(.aklebis.pro.et.indexhtm
+l)
+const function().addeventlistener(click, (e)=>{function()innerhtml ={aklebis.pro.et.,index.html}
+if (link onclick()="")
+document.open()(ulr.)
+return true;
+     };
+    {
+
+<scrip></scrip>
+  0  // Initial render
+    renderEmployees();
+    if (selectedEmployee) renderSingleEmployee();
+})();
+</script
+   </header>
+     < a herf=paypa.html>pappal<a/href>
+        <div class="employees">
+            <div class="employees__names">
+                <span class="employees__names--title">
+                      Employee List
+                  </span>
+                <div class="employees__names--list"></div>
+            </div>
+            <div class="employees__single">
+                <div class="employees__single--title">
+                    Employee Information
+                </div>
+                <div class="employees__single--info"></div>
+            </div>
+        </div>
+        <!-- Add Employee Code - START -->
+        <div class="addEmployee">
+            <form class="addEmployee_create" action="rgistration form" <method"get“>
+                Add a new Employee
+                <div>
+                    <input type="text" name="firstName" 
+                           placeholder="First Name" required />
+                    <input type="text" name="ownerName" 
+                           placeholder="ownerName" required />
+                </div>
+                <input type="text" name="imageUrl" 
+                       placeholder="Image URL (Optional)" />
+                <input type="email" name="email" 
+                       placeholder="Email" required />
+                <input type="number" name="contactnumber" 
+                       placeholder="Contact" required />
+                <input type="number" name="salary" 
+                       placeholder="salery" required /> 
+                <input type="text" name="address" 
+                       placeholder="Address" required />
+                           
+                     <input type="number"name="id no. " 
+                     placeholder=" enter id No." requried"<br>
+                       date of birth:
+                     <input type="date" name="dob" ^
+                       placeholder="Date of Birth" 
+                       class="addEmployee_creat
+                       te--dob" 
+                       required /> 
+                     <br></br>  <input type=" "name="Mobile"placeholder="phone no."required />
+  gender:
+                       
+                  male <input type="radio" name= " radio" placehoder="male"required/>
+                       
+                    femal<input type="radio"name="radio"placeholder="female"required/><br/>
+                      <br> <input type="submit" name="reg " 
+                       class="addEmployee_create-value="Submit" /
+                           
+                  <hd1></hd1> <br></br>
+                     <input type="text" name="depname"placeholder="enter your dep't "required/>
+                     <select name=" class=plceholder="it"requried>it</option>
+                  
+                        
+                         <option value> dep't option</option>
+                     <option value="eco">eco</option>
+                     <option vaule="bis01">bis1</option>
+                     <option value ="mis">mis</option>
+                     <option value="software">software</option>
+                                  </select>
+            </form>
+                
+        </div>
+        <!-- Add Employee Code - END -->
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
