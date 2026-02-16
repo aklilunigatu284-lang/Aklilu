@@ -1,0 +1,58 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Car Registration System</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="main-container">
+    <h1>Car Registration System</h1>
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-button active" data-tab="register">Register Car</button>
+      <button class="tab-button" data-tab="view">View All Registrations</button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content active" id="register">
+      <div class="card">
+        <h3>Register a Car</h3>
+        <form id="registrationForm" on submit= return formvalidation() >
+          <div class=form -group">
+                 <label for ="emailaddress">e-address</label> 
+                <input type="text" id="emailaddress"name="emailAddress"placeholder="enter emailaddress"requred/>
+                <div class=form-group">
+                <lablefor="Name"></lable>
+                <inputype="text" id= "owner name" name="owner name" placeholder="Enter Name"requarid/><br></br>
+                     </div>
+          <div class="form-group">
+            <button type="submit" id="submitButton">Save Registration</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="tab-content" id="view">
+      <div class="card">
+        <h3>All Registrations</h3>
+        <table id="registrationTable">
+          <thead>
+            <tr>
+              <th>Actions</th>
+               <th>email address</th>
+               <th > licenseNumber</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dynamic rows will be added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
